@@ -17,7 +17,7 @@ import org.mockito.MockitoAnnotations;
 import com.ibm.api.userapi.component.GeolocationEndpoint;
 import com.ibm.api.userapi.component.GeolocationEndpointImpl;
 import com.ibm.api.userapi.constant.ConstantClass;
-import com.ibm.api.userapi.exception.UserRegisterException;
+import com.ibm.api.userapi.exception.UserRegistrationException;
 import com.ibm.api.userapi.model.GeolocationAPIModel;
 import com.ibm.api.userapi.model.UserModel;
 import com.ibm.api.userapi.model.UserResponseModel;
@@ -27,7 +27,7 @@ public class UserRegisterServiceImplTest {
 	@Mock
 	GeolocationEndpoint geolocationEndpointObj;
 	@InjectMocks
-	UserRegServiceImpl userRegService;
+	UserRegistrationServiceImpl userRegService;
 
 	@SuppressWarnings("deprecation")
 	@BeforeEach
@@ -59,11 +59,11 @@ public class UserRegisterServiceImplTest {
 				"United States of America", "USA", "Ohio", "OH", "Cincinnati","56342");
 		String ipAddress = userInput.getIpAddress();
 		when(geolocationEndpointObj.getGeolocationData(ipAddress)).thenReturn(responseserviceObj);
-		UserRegisterException userRegisterException = assertThrows(UserRegisterException.class, () -> {
+		UserRegistrationException userRegisterException = assertThrows(UserRegistrationException.class, () -> {
 			userRegService.registerUser(userInput);
 		});
 		
-		String expectedMessage = ConstantClass.OUTSIDE_CANADA_ERR_MESSAG;
+		String expectedMessage = ConstantClass.OUTSIDE_CANADA_ERR_MESSAGE;
 		String actualMessage = userRegisterException.getMessage();
 		assertTrue(actualMessage.contains(expectedMessage));
 		verify(geolocationEndpointObj, times(1)).getGeolocationData(ipAddress);

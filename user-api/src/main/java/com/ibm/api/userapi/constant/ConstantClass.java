@@ -5,5 +5,5 @@ public class ConstantClass {
 	public static final String USER_CITY="How everything is in";
 	public static final String CANADA_COUNTRY="Canada";
 	
-	public static final String OUTSIDE_CANADA_ERR_MESSAG="You are not able to register from outside of Canada!";
+	public static final String OUTSIDE_CANADA_ERR_MESSAGE="You are not able to register from outside of Canada!";
 }
