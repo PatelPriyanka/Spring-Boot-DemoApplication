@@ -18,10 +18,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.ibm.api.userapi.model.ErrorResponseModel;
 
 @ControllerAdvice
-public class UserRegisterExceptionHandler extends ResponseEntityExceptionHandler {
+public class UserRegistrationExceptionHandler extends ResponseEntityExceptionHandler {
 	
-	@ExceptionHandler(UserRegisterException.class)
-	public ResponseEntity<Object> handleInvalidCountryException(UserRegisterException e) {
+	@ExceptionHandler(UserRegistrationException.class)
+	public ResponseEntity<Object> handleInvalidCountryException(UserRegistrationException e) {
 		ErrorResponseModel errorResponse = new ErrorResponseModel(e.getMessage());
 		return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
 	}

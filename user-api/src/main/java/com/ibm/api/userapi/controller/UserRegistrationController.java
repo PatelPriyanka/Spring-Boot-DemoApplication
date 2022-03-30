@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.api.userapi.model.UserModel;
 import com.ibm.api.userapi.model.UserResponseModel;
-import com.ibm.api.userapi.service.UserRegService;
+import com.ibm.api.userapi.service.UserRegistrationService;
 
 @RestController
 @RequestMapping("/user")
 public class UserRegistrationController {
 
 	@Autowired
-	UserRegService userServiceObj;
+	UserRegistrationService userServiceObj;
 	
 	@RequestMapping(value="/register",method = RequestMethod.POST)
 	public ResponseEntity<?> registerUser(@Valid @RequestBody UserModel userInput){

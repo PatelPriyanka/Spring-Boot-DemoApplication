@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.ibm.api.userapi.component.GeolocationEndpointImpl;
 import com.ibm.api.userapi.constant.ConstantClass;
 import com.ibm.api.userapi.controller.UserRegistrationController;
-import com.ibm.api.userapi.exception.UserRegisterException;
+import com.ibm.api.userapi.exception.UserRegistrationException;
 import com.ibm.api.userapi.model.GeolocationAPIModel;
 import com.ibm.api.userapi.model.UserModel;
 import com.ibm.api.userapi.model.UserResponseModel;
@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
-public class UserRegServiceImpl implements UserRegService {
+public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 	@Autowired
 	GeolocationEndpointImpl geolocationService;
@@ -34,8 +34,8 @@ public class UserRegServiceImpl implements UserRegService {
 				"User country=  "+ geolocationObj.getCountry());
 		
 		if (!geolocationObj.getCountry().equals(ConstantClass.CANADA_COUNTRY)) {
-			logger.info(ConstantClass.OUTSIDE_CANADA_ERR_MESSAG);
-			throw new UserRegisterException(ConstantClass.OUTSIDE_CANADA_ERR_MESSAG);
+			logger.info(ConstantClass.OUTSIDE_CANADA_ERR_MESSAGE);
+			throw new UserRegistrationException(ConstantClass.OUTSIDE_CANADA_ERR_MESSAGE);
 		}
 		return new UserResponseModel(UUID.randomUUID(),
 				ConstantClass.USER_GREET + userDetails.getUsername() + 
